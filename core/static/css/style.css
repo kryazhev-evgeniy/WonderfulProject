@@ -1,0 +1,26 @@
+html{
+    min-height: 100vh;
+}
+body, .wrapper{
+    min-height: 100vh;
+}
+.wrapper{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+.promo{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* style="background-color: #e3f2fd;" */
+.light-primary{
+    background-color: #e3f2fd;
+}
+.light-primary-text{
+    color: #e3f2fd;
+}
+.btn-primary{
+    background-color: #e3f2fd;
+    color: black;
+}
+

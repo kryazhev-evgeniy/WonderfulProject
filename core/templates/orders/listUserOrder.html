@@ -1,0 +1,30 @@
+{% extends 'index.html' %} 
+
+{% block title %} 
+Заказы {{user.lastname}} 
+{% endblock title %} 
+
+{% block content %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Название услуги</th>
+      <th scope="col">Дата заказа</th>
+      <th scope="col">Время заказа</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %} {% if order.user_order.id == user.id %}
+    <tr>
+      <th scope="row">{{order.id}}</th>
+      <td>{{order.service_order.name}}</td>
+      <td>{{order.date}}</td>
+      <td>{{order.time}}</td>
+    </tr>
+    {% endif %} {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}

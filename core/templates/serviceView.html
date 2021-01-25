@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block title %}
+Услуги
+{% endblock title %}
+{% block content %}
+{% if services %}
+
+{% for service in services %}
+
+<div class="card mt-3" style="width: 18rem;">
+    <img class="card-img-top" src="{{service.image}}" height="250" width="250">
+    <div class="card-body">
+        <h5 class="card-title">{{service.name}}</h5>
+        <p class="card-text">{{service.description}}</p>
+        <a href="{% url 'servicedetail' service.id %}" class="btn btn-primary d-block">Просмотреть</a>
+    </div>
+</div>
+
+{% endfor %}
+{% else %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-4 mt-5">
+        <h1 class="text-center text-info">Нет услуг</h1>
+    </div>
+</div>
+
+{% endif %}
+{% endblock content %}

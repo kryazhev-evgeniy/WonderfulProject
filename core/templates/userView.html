@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+{% block title %}
+{{user.username}}
+{% endblock title %}
+
+{% block content %}
+<div class='p-2'>
+    <h1>пользователь - {{ user.username }}</h1>
+    {% if user.email %}
+    <h3>Email - {{ user.email }}</h3>
+    {% endif %}
+    <a href="{% url 'profile_edit' user.id %}">Редактировать</a>
+</div>
+{% endblock content %}
