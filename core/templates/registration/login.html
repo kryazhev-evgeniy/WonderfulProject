@@ -3,22 +3,25 @@
 Авторизация
 {% endblock title %}
 {% block content %}
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <form class="col-lg-4" method="POST">{% csrf_token %}
 
-<div class="row justify-content-center mt-5">
-    <form class="col-4" method="POST">{% csrf_token %}
-
-        {% for field in form %}
-        <div class="mb-3">
-            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-            <input type="text" class="form-control" name="{{ field.html_name }}" id="{{ field.id_for_label }}">
+                {% for field in form %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    <input type="text" class="form-control" name="{{ field.html_name }}" id="{{ field.id_for_label }}">
+                </div>
+                {{ field.errors }}
+                {% endfor %}
+                <div class="d-flex justify-content-center flex-column">
+                    <button type="submit" class="btn btn-primary">Войти</button>
+                    <a class="btn mt-2" href="{% url 'signup' %}">Регистрация</a>
+                </div>
+            </form>
         </div>
-        {{ field.errors }}
-        {% endfor %}
-        <div class="row justify-content-center">
-            <button type="submit" class="btn btn-primary">Войти</button>
-            <a class="btn mt-2 text-primary" href="{% url 'signup' %}">Регистрация</a>
-        </div>
-    </form>
-</div>
+    </div>
+</section>
 
 {% endblock content %}

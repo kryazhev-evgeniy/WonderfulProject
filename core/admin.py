@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order,Service, Review
+from .models import Order,Service
 # Register your models here.
 
 class ServiceAdmin(admin.ModelAdmin):
@@ -15,6 +15,5 @@ class ReviewAdmin(admin.ModelAdmin):
 
 admin.site.register(Service,ServiceAdmin)
 admin.site.register(Order,OrderAdmin)
-admin.site.register(Review,ReviewAdmin)
 
 admin.site.site_header = "Администрация салона Чудо"

@@ -35,6 +35,7 @@
 
 <body>
 
+  {% block nav %}
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="{% url 'home' %}">Чудный</a>
@@ -47,38 +48,30 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link">Главная</a></li>
           <li class="nav-item active"><a href="{% url 'services' %}" class="nav-link">Услуги</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">Shop</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown04">
-              <a class="dropdown-item" href="{% url 'services' %}">Услуги</a>
-              <a class="dropdown-item" href="product-single.html">Single Product</a>
-              <a class="dropdown-item" href="cart.html">Cart</a>
-              <a class="dropdown-item" href="checkout.html">Checkout</a>
-            </div>
-          </li>
-          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          {% if user.is_authenticated %}
           <li class="nav-item cta cta-colored">
             <a href="{% url 'listuserorder' %}" class="nav-link"><span class="icon-shopping_cart"></span> Записи</a>
           </li>
-
+          <li class="nav-item active"><a href="{% url 'logout' %}" class="nav-link">Выйти</a></li>
+          {% else %}
+          <li class="nav-item active"><a href="{% url 'login' %}" class="nav-link">Войти</a></li>
+          <li class="nav-item active cta cta-colored"><a href="{% url 'signup' %}" class="nav-link">Регистрация</a></li>
+          {% endif %}
         </ul>
       </div>
     </div>
   </nav>
+  {% endblock nav %}
 
   {% block header_promo %}
   {% endblock header_promo %}
 
   <div class="goto-here"></div>
 
-  <main>
-    {% block content %}
-    {% endblock content %}
-  </main>
+  {% block content %}
+  {% endblock content %}
 
+  {% block footer %}
   <footer class="ftco-footer bg-light ftco-section">
     <div class="container">
       <div class="row mb-5">
@@ -150,12 +143,14 @@
       </div>
     </div>
   </footer>
+  {% endblock footer %}
 
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
       <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
       <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
         stroke="#F96D00" />
-    </svg></div>
+    </svg>
+  </div>
 
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>

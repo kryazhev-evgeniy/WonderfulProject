@@ -41,16 +41,3 @@ class Order(models.Model):
     def __str__(self):
         return str(self.date)
 
-class Review(models.Model):
-    user = models.ForeignKey(User,verbose_name="Пользователь", on_delete=models.CASCADE)
-    service = models.ForeignKey(Service,verbose_name="Услуга",on_delete=models.CASCADE)
-    text = models.TextField(verbose_name="Текст остзыва")
-    score = models.IntegerField(verbose_name="Оценка",default=0)
-
-    class Meta:
-        managed = True
-        verbose_name = 'Отзыв'
-        verbose_name_plural = 'Отзывы'
-
-    def __str__(self):
-        return self.text

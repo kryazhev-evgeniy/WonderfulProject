@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+from os import path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,6 +32,16 @@ LOGIN_REDIRECT_URL = 'home' # URL redirecting after a successful authentication
 
 LOGOUT_REDIRECT_URL = 'home'
 
+ADMIN_COLORS_BASE_THEME = 'wondefull'
+
+ADMIN_COLORS = [
+    ('Default', []),
+    ('wondefull', 'css/theme.css'),
+    ('Lite', 'admincolors/css/lite.css'),
+    ('Dark Blue', 'admincolors/css/dark-blue.css'),
+    ('Gray', 'admincolors/css/gray.css')
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,7 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core'
+    'core',
+    'admincolors'
 ]
 
 MIDDLEWARE = [
@@ -59,7 +70,10 @@ ROOT_URLCONF = 'WonderfulProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            path.join(BASE_DIR, "templates"),
+            path.join(BASE_DIR, "core/templates")
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'admincolors.context_processors.admin_theme'
             ],
         },
     },
