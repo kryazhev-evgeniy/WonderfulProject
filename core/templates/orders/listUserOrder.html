@@ -1,30 +1,64 @@
-{% extends 'index.html' %} 
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+Заказы {{user.lastname}}
+{% endblock title %}
 
-{% block title %} 
-Заказы {{user.lastname}} 
-{% endblock title %} 
+{% block header_promo %}
+<div class="hero-wrap hero-bread" style="background-image: url('{% static 'images/bg_6.jpg' %}');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-0 bread">Мои Записи</h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock header_promo %}
 
 {% block content %}
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Название услуги</th>
-      <th scope="col">Дата заказа</th>
-      <th scope="col">Время заказа</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for order in orders %} {% if order.user_order.id == user.id %}
-    <tr>
-      <th scope="row">{{order.id}}</th>
-      <td>{{order.service_order.name}}</td>
-      <td>{{order.date}}</td>
-      <td>{{order.time}}</td>
-    </tr>
-    {% endif %} {% endfor %}
-  </tbody>
-</table>
+<section class="ftco-section ftco-cart">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 ftco-animate">
+        <div class="cart-list">
+          <table class="table">
+            <thead class="thead-primary">
+              <tr class="text-center">
+                <th>&nbsp;</th>
+                <th>Название услуги</th>
+                <th>Дата заказа</th>
+                <th>Время заказа</th>
+                <th>Цена заказа</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in orders %} {% if order.user_order.id == user.id %}
+              <tr class="text-center">
+
+                <td class="image-prod">
+                  <div class="img" style="background-image:url({{order.service_order.image}});"></div>
+                </td>
+
+                <td class="product-name">
+                  <h3>{{order.service_order.name}}</h3>
+                </td>
+
+                <td class="quantity">
+                  <p>{{order.date}}</p>
+                </td>
+
+                <td class="date">{{order.time}}</td>
+                <td class="total">${{order.service_order.price}}</td>
+              </tr><!-- END TR-->
+              {% endif %} {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% endblock content %}

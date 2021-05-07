@@ -1,14 +1,56 @@
 {% extends "index.html" %}
 {% load static %}
-{% block content %}
-<div class="p-3">
-    <div class="row">
-        <div class="col d-flex justify-content-center align-items-center">
-            <img src="{% static 'images/model1.png' %}" alt="">
-        </div>
-        <div class="col d-flex align-items-center justify-content-center">
-            <h1>Чудный</h1>
+{% block header_promo %}
+<div class="hero-wrap js-fullheight" style="background-image: url('{% static 'images/bg_1.jpg' %}');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-11 ftco-animate text-center">
+                <h1>Le Stylist</h1>
+                <h2><span>Wear Your Dress</span></h2>
+            </div>
+            <div class="mouse">
+                <a href="#" class="mouse-icon">
+                    <div class="mouse-wheel"><span class="ion-ios-arrow-down"></span></div>
+                </a>
+            </div>
         </div>
     </div>
 </div>
+{% endblock header_promo %}
+{% block content %}
+<section class="ftco-section ftco-no-pb ftco-no-pt bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center"
+                style="background-image: url({% static 'images/bg_2.jpg' %});">
+                <a href="https://vimeo.com/45830194"
+                    class="icon popup-vimeo d-flex justify-content-center align-items-center">
+                    <span class="icon-play"></span>
+                </a>
+            </div>
+            <div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
+                <div class="heading-section-bold mb-5 mt-md-5">
+                    <div class="ml-md-0">
+                        <h2 class="mb-4">Чудный <br> <span>Салон красоты</span></h2>
+                    </div>
+                </div>
+                <div class="pb-md-5">
+                    По дороге она встретила копию. Копия предупреждала Маленький Слепой Текст, что там, откуда он
+                    взялся, он был бы переписан тысячу раз, и все, что осталось от его происхождения, будет словом "и",
+                    и Маленький Слепой Текст должен развернуться и вернуться в свою собственную безопасную страну. Но
+                    ничто из того, что было сказано в копии, не могло убедить ее, и поэтому не потребовалось много
+                    времени, пока несколько коварных Копирайтеров не устроили на нее засаду, напоили ее Одиночеством и
+                    условно-досрочным освобождением и не затащили в свое агентство, где они надругались над ней за свои.
+
+                    <p>
+                        Добравшись до первых холмов Италийских гор, она в последний раз оглядела горизонт своего родного
+                        города Букмарксгроув, заголовок Алфавитной деревни и подлинию своей собственной дороги, Линейной
+                        полосы. Жалостливый переосмысленный вопрос пробежал по ее щеке, затем она продолжила свой путь.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock content %}
