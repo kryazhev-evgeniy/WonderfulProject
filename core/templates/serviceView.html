@@ -19,50 +19,67 @@
 <section class="ftco-section bg-light">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-3 mb-3">
+                <div>
+                    <h4>Категории</h4>
+                </div>
+                <div>
+                    {% for category in categories %}
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="{% url 'services' category.id %}">{{ category.name }}</a>
+                        </li>
+                    </ul>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    {% if services %}
+                    {% for service in services %}
 
-            {% if services %}
-            {% for service in services %}
-
-            <div class="col-sm col-md-6 col-lg-3 ftco-animate">
-                <div class="product">
-                    <a href="#" class="img-prod">
-                        <img class="img-fluid" src="{{service.image}}"alt="Colorlib Template">
-                    </a>
-                    <div class="text py-3 px-3">
-                        <h3><a href="#">{{service.name}}</a></h3>
-                        <div class="d-flex">
-                            <div class="pricing">
-                                <p class="price"><span class="price-sale">${{ service.price }}</span></p>
-                            </div>
-                            <div class="rating">
-                                <p class="text-right">
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
-                                    <span class="ion-ios-star-outline"></span>
+                    <div class="col-lg-3 ftco-animate">
+                        <div class="product">
+                            <a href="#" class="img-prod">
+                                <img class="img-fluid" src="{{service.image}}" alt="Colorlib Template">
+                            </a>
+                            <div class="text py-3 px-3">
+                                <h3><a href="#">{{service.name}}</a></h3>
+                                <div class="d-flex">
+                                    <div class="pricing">
+                                        <p class="price"><span class="price-sale">${{ service.price }}</span></p>
+                                    </div>
+                                    <div class="rating">
+                                        <p class="text-right">
+                                            <span class="ion-ios-star-outline"></span>
+                                            <span class="ion-ios-star-outline"></span>
+                                            <span class="ion-ios-star-outline"></span>
+                                            <span class="ion-ios-star-outline"></span>
+                                            <span class="ion-ios-star-outline"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p class="bottom-area d-flex">
+                                    <a href="{% url 'servicedetail' service.id %}" class="add-to-cart">
+                                        <span>Просмотреть <i class="ion-ios-add ml-1"></i></span>
+                                    </a>
+                                    <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
                                 </p>
                             </div>
                         </div>
-                        <hr>
-                        <p class="bottom-area d-flex">
-                            <a href="{% url 'servicedetail' service.id %}" class="add-to-cart">
-                                <span>Просмотреть <i class="ion-ios-add ml-1"></i></span>
-                            </a>
-                            <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
-                        </p>
                     </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-4 mt-5">
+                            <h1 class="text-center text-info">Нет услуг</h1>
+                        </div>
+                    </div>
+
+                    {% endif %}
                 </div>
             </div>
-            {% endfor %}
-            {% else %}
-            <div class="row justify-content-center mt-5">
-                <div class="col-4 mt-5">
-                    <h1 class="text-center text-info">Нет услуг</h1>
-                </div>
-            </div>
-            
-            {% endif %}
         </div>
     </div>
 </section>

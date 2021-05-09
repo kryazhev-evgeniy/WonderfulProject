@@ -5,7 +5,7 @@ from django.views.generic import ListView,CreateView,DetailView,UpdateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
-from .models import Service,Order
+from .models import Service,Order, Category
 # Create your views here.
 
 class HomeView(ListView):
@@ -17,6 +17,13 @@ class ServiceView(ListView):
     model = Service
     template_name = 'serviceView.html'
     context_object_name = 'services'
+
+    def get_context_data(self, **kwargs):
+        context = super(ServiceView,self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        if "category_pk" in self.kwargs:
+            context['services'] = Service.objects.filter(category__id=self.kwargs["category_pk"])
+        return context
 
 class ServiceDetail(DetailView):
     model = Service
@@ -50,10 +57,11 @@ class CreateOrder(CreateView):
         context = super(CreateOrder,self).get_context_data(**kwargs)
         context['user_pk'] = self.kwargs['user_pk']
         context['service_pk'] = self.kwargs['service_pk']
-        print(context['form'])
         return context
 
 class ListUserOrder(ListView):
     model = Order
     template_name = 'orders/listUserOrder.html'
     context_object_name = 'orders'
+        
+    
