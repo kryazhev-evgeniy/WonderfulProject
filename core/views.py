@@ -18,13 +18,6 @@ class ServiceView(ListView):
     template_name = 'serviceView.html'
     context_object_name = 'services'
 
-    def get_context_data(self, **kwargs):
-        context = super(ServiceView,self).get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        if "category_pk" in self.kwargs:
-            context['services'] = Service.objects.filter(category__id=self.kwargs["category_pk"])
-        return context
-
 class ServiceDetail(DetailView):
     model = Service
     template_name = 'serviceDetail.html'
